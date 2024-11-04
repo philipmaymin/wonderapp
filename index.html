@@ -136,6 +136,7 @@
         ];
 
         let currentIndex = 0;
+        const likedProfiles = [];
 
         function updateProfile(index) {
             const profile = profiles[index];
@@ -146,6 +147,7 @@
         }
 
         document.getElementById("like-btn").addEventListener("click", function() {
+            likedProfiles.push(profiles[currentIndex]);
             alert(`You liked ${profiles[currentIndex].name}!`);
             currentIndex = (currentIndex + 1) % profiles.length;
             updateProfile(currentIndex);
@@ -159,6 +161,14 @@
 
         // Initialize with the first profile
         updateProfile(currentIndex);
+
+        // Display liked profiles (for demonstration purposes)
+        document.addEventListener("keydown", function(event) {
+            if (event.key === "l") {
+                let likedProfilesNames = likedProfiles.map(profile => profile.name).join(", ");
+                alert(`Liked profiles: ${likedProfilesNames}`);
+            }
+        });
     </script>
 </body>
 </html>
